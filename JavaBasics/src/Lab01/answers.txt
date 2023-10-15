@@ -1,0 +1,12 @@
+Exercises Question:
+6.1
+    1. What happens if users choose “Cancel”?
+    - Nếu người dùng chọn cancel thì biểu thức option==JOptionPane.YES_OPTION trả về false
+    - Do đó hộp thoại lúc sau hiển thị rằng người dùng đã chọn NO
+    2. How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t” (Suggestion: Use Javadocs or using Eclipse/Netbean IDE help). 
+    - Có thể import javax.swing.UIManager;
+    - Sau đó sử dụng 2 lệnh 
+        UIManager.put("OptionPane.yesButtonText", "I do");
+        UIManager.put("OptionPane.noButtonText", "I don't");
+    Sẽ có thể thay đổi được phần chữ Yes và No
+
