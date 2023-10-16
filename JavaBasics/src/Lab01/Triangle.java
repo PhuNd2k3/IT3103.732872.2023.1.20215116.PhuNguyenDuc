@@ -14,7 +14,7 @@ public class Triangle {
         do {
             System.out.print("PhuND 215116: Enter height: ");
             n = scanner.nextInt();
-            System.out.println("PhuND 215116: Can't be negative");
+            if(n<=0) System.out.println("PhuND 215116: Must be positive");
         } while (n <= 0);
         // So lan chay cua for tuong ung voi n
         for (int i = 1; i <= n; i++) {

@@ -6,7 +6,10 @@ public class SolveEquation {
     public static void main(String[] args) {
         // Yêu cầu người dùng nhập loại phương trình cần giải
         String equationType = JOptionPane.showInputDialog(
-                "Choose type of equation:\n1. Linear equation (ax + b = 0)\n2. Linear system with two variables\n3. Second-degree equation  (ax^2 + bx + c = 0)");
+                "Choose type of equation:\n"
+                + "1. Linear equation (ax + b = 0)\n"
+                + "2. Linear system with two variables\n"
+                + "3. Second-degree equation  (ax^2 + bx + c = 0)");
 
         switch (equationType) {
             case "1":
