@@ -1,5 +1,4 @@
 
-
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
     private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
@@ -10,6 +9,31 @@ public class Cart {
             itemsOrdered[qtyOrdered] = disc;
             qtyOrdered++;
             System.out.println("Nguyen Duc Phu 20215116: The disc has been added");
+        } else { // Phu: Full
+            System.out.println("Nguyen Duc Phu 20215116: The cart is almost full");
+        }
+    }
+
+    public void addDigitalVideoDisc(DigitalVideoDisc[] discList) {
+        int numbersOrdered = discList.length;
+        if ((qtyOrdered + numbersOrdered - 1) < MAX_NUMBERS_ORDERED) { // Phu: Not already full
+            for (DigitalVideoDisc x : discList) {
+                itemsOrdered[qtyOrdered] = x;
+                qtyOrdered++;
+            }
+            System.out.println("Nguyen Duc Phu 20215116: The disc's list has been added");
+        } else { // Phu: Full
+            System.out.println("Nguyen Duc Phu 20215116: The cart is almost full");
+        }
+    }
+
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+        if ((qtyOrdered + 1) < MAX_NUMBERS_ORDERED) { // Phu: Not already full
+            itemsOrdered[qtyOrdered] = dvd1;
+            qtyOrdered++;
+            itemsOrdered[qtyOrdered] = dvd2;
+            qtyOrdered++;
+            System.out.println("Nguyen Duc Phu 20215116: Two disc has been added");
         } else { // Phu: Full
             System.out.println("Nguyen Duc Phu 20215116: The cart is almost full");
         }
