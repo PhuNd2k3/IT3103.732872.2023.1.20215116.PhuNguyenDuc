@@ -11,8 +11,14 @@ public class DigitalVideoDisc {
     public String getTitle() {
         return title;
     }
+    
 
-    public String getCategory() {
+    public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getCategory() {
         return category;
     }
 
@@ -86,4 +92,5 @@ public class DigitalVideoDisc {
                 && category.equals(disc.category)
                 && director.equals(disc.director);
     }
+    
 }
