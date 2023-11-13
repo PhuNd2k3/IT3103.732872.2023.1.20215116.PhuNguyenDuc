@@ -19,6 +19,11 @@ public class CartTest {
         // Nguyen Duc Phu 20215116: Test the print method
         cart.print();
 
-        // To-do: Test the search methods here
+        // Nguyen Duc Phu 20215116: To-do: Test the search methods here
+        cart.searchById(1);
+        cart.searchById(4);
+
+        cart.searchByTitle("Star Wars");
+        cart.searchByTitle("Random title");
     }
 }
