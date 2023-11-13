@@ -19,7 +19,7 @@ public class DigitalVideoDisc {
         return title;
     }
 
-	public void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -104,6 +104,14 @@ public class DigitalVideoDisc {
                 && title.equals(disc.title)
                 && category.equals(disc.category)
                 && director.equals(disc.director);
+    }
+
+    // Nguyen Duc Phu 20215116: Overide toString method in session 6
+    @Override
+    public String toString() {
+        return "DVD - " + title + " - " + (category == null ? "Missing category" : category) + " - "
+                + (director == null ? "Missing director" : director)
+                + " - " + (length <= 0 ? "Missing length" : length);
     }
 
 }
