@@ -74,4 +74,26 @@ public class Cart {
         System.out.println("***************************************************");
     }
 
+    public void searchById(int id) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getId() == id) {
+                System.out.println("Nguyen Duc Phu 20215116: DVD founded:");
+                System.out.println(itemsOrdered[i].toString() + ": " + itemsOrdered[i].getCost() + " $");
+                return;
+            }
+        }
+        System.out.println("Nguyen Duc Phu 20215116: No match found with id: " + id);
+    }
+
+    public void searchByTitle(String title) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].isMatch(title)) {
+                System.out.println("Nguyen Duc Phu 20215116: DVD founded:");
+                System.out.println(itemsOrdered[i].toString() + ": " + itemsOrdered[i].getCost() + " $");
+                return;
+            }
+        }
+        System.out.println("Nguyen Duc Phu 20215116: No match found with title: " + title);
+    }
+
 }

@@ -10,11 +10,11 @@ public class DigitalVideoDisc {
     private float cost;
 
     // Nguyen Duc Phu 20215161: Getter generation
-    
+
     public int getId() {
-		return id;
-	}
-    
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -114,4 +114,8 @@ public class DigitalVideoDisc {
                 + " - " + (length <= 0 ? "Missing length" : length);
     }
 
+    // Nguyen Duc Phu 20215116: Method for check matching title
+    public boolean isMatch(String title) {
+        return this.title.toLowerCase().contains(title.toLowerCase());
+    }
 }
