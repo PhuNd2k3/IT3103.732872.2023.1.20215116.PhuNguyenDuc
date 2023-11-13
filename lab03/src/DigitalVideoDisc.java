@@ -1,6 +1,8 @@
 
-
 public class DigitalVideoDisc {
+    private static int nbDigitalVideoDiscs = 0; // Nguyen Duc Phu 20215116: Class member
+
+    private int id; // Nguyen Duc Phu 20215116: Instance member
     private String title;
     private String category;
     private String director;
@@ -8,17 +10,20 @@ public class DigitalVideoDisc {
     private float cost;
 
     // Nguyen Duc Phu 20215161: Getter generation
+    
+    public int getId() {
+		return id;
+	}
+    
     public String getTitle() {
         return title;
     }
-    
 
-    public void setTitle(String title) {
-		this.title = title;
-	}
+	public void setTitle(String title) {
+        this.title = title;
+    }
 
-
-	public String getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -38,6 +43,8 @@ public class DigitalVideoDisc {
     public DigitalVideoDisc(String title) {
         super();
         this.title = title;
+        nbDigitalVideoDiscs++; // Nguyen Duc Phu 20215116: update nbDigitalVideoDisc
+        this.id = nbDigitalVideoDiscs; // Nguyen Duc Phu 20215116: assign appropriate value for the id
     }
 
     public DigitalVideoDisc(String title, String category, float cost) {
@@ -45,6 +52,8 @@ public class DigitalVideoDisc {
         this.title = title;
         this.category = category;
         this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     public DigitalVideoDisc(String title, String category, String director, float cost) {
@@ -53,6 +62,8 @@ public class DigitalVideoDisc {
         this.category = category;
         this.director = director;
         this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
@@ -62,6 +73,8 @@ public class DigitalVideoDisc {
         this.director = director;
         this.length = length;
         this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     @Override
@@ -92,5 +105,5 @@ public class DigitalVideoDisc {
                 && category.equals(disc.category)
                 && director.equals(disc.director);
     }
-    
+
 }
