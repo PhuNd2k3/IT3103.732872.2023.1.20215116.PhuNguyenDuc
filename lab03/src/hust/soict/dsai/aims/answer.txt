@@ -1,0 +1,6 @@
+Trả lời câu hỏi phần 3:
+•	After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
+•	After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
+Trong Java, tham số được truyền theo giá trị, nghĩa là giá trị của các đối số được truyền vào các tham số của phương thức. Tuy nhiên, đối với đối tượng, giá trị được truyền là tham chiếu đến đối tượng, không phải là đối tượng thực sự.
+Do đó khi hoán đổi o1 và o2 trong phương thức swap() thì bên ngoài vẫn không thay đổi so với ban đầu.
+Còn trong phương thức changeTitle() ta thay đổi title bằng cách sử dụng setTitle() nên title được thực sự thay đổi.
