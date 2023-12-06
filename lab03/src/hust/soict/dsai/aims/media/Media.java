@@ -1,10 +1,14 @@
 package hust.soict.dsai.aims.media;
 
+import java.util.Comparator;
+
 public abstract class Media extends Object {
 	private int id;
 	private String title;
 	private String category;
 	private float cost;
+	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 
 	public Media(int id, String title, String category, float cost) {
 		// TODO Auto-generated constructor stub
@@ -57,32 +61,27 @@ public abstract class Media extends Object {
 		}
 
 		/*
-		 * Nguyen Duc Phu 20215116: Check if o is an instance of DigitalVideoDisc or not
+		 * Nguyen Duc Phu 20215116: Check if o is an instance of Media or not
 		 * "null instanceof [type]" also returns false
 		 */
 		if (!(o instanceof Media)) {
 			return false;
 		}
-
-		// Nguyen Duc Phu 20215116: typecast o to Complex so that we can compare data
-		// members
 		Media media = (Media) o;
 
 		// Nguyen Duc Phu 20215116: Compare the data members and return accordingly
-		return cost == media.cost
-				&& title.equals(media.title)
-				&& category.equals(media.category);
+		return title.equals(media.title);
 	}
 
 	// Nguyen Duc Phu 20215116: Overide toString method in session 6
 	@Override
 	public String toString() {
-		return "Media - " + title + " - " + (category == null ? "Missing category" : category) + " - " + "Cost: "
-				+ cost;
+		return title + " - " + (category == null ? "Missing category" : category) + " - " + "Cost: " + cost;
 	}
 
 	// Nguyen Duc Phu 20215116: Method for check matching title
 	public boolean isMatch(String title) {
 		return this.title.toLowerCase().contains(title.toLowerCase());
 	}
+
 }

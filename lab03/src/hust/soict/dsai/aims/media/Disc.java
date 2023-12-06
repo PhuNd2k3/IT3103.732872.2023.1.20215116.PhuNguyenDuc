@@ -19,4 +19,7 @@ public class Disc extends Media {
 		return director;
 	}
 
+	public String toString() {
+		return "Disc - " + super.toString() + " - " + "Director: " + director + " - " + "Length: " + length;
+	}
 }

@@ -13,6 +13,10 @@ public class Book extends Media {
 		this.authors.addAll(authors);
 	}
 
+	public Book(int id, String title, String category, float cost) {
+		super(id, title, category, cost);
+	}
+
 	// Phu 20215116: Getter and Setter methods: Create later if necessary
 
 	// Phu 20215116: Method to add an author
@@ -33,4 +37,8 @@ public class Book extends Media {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Book - " + super.toString() + " Author " + authors;
+	}
 }

@@ -1,6 +1,58 @@
+****** LAB 03 *****
+
 Trả lời câu hỏi phần 3:
 •	After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
 •	After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
 Trong Java, tham số được truyền theo giá trị, nghĩa là giá trị của các đối số được truyền vào các tham số của phương thức. Tuy nhiên, đối với đối tượng, giá trị được truyền là tham chiếu đến đối tượng, không phải là đối tượng thực sự.
 Do đó khi hoán đổi o1 và o2 trong phương thức swap() thì bên ngoài vẫn không thay đổi so với ban đầu.
 Còn trong phương thức changeTitle() ta thay đổi title bằng cách sử dụng setTitle() nên title được thực sự thay đổi.
+
+
+***** LAB 04 *****
+Alternatively, to compare items in the cart, instead of using the Comparator class I have
+mentioned, you can use the Comparable interface1 and override the compareTo()method. You can
+refer to the Java docs to see the information of this interface.
+Suppose we are taking this Comparable interface approach.
+- What class should implement the Comparable interface?
+- In those classes, how should you implement the compareTo()method to reflect the ordering that
+we want?
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+- Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
+decreasing length, then cost. How would you modify your code to allow this?
+
+Ngoài ra, để so sánh các mặt hàng trong giỏ hàng, thay vì sử dụng lớp Comparator tôi có
+đã đề cập, bạn có thể sử dụng giao diện So sánh1 và ghi đè phương thức so sánhTo(). Bạn có thể
+tham khảo tài liệu Java để biết thông tin về giao diện này.
+Giả sử chúng ta đang sử dụng phương pháp giao diện So sánh này.
+- Lớp nào nên triển khai giao diện Comparable?
+- Trong các lớp đó, bạn nên triển khai phương thức so sánhTo() như thế nào để phản ánh thứ tự
+chúng tôi muốn?
+- Liệu chúng ta có thể có hai quy tắc đặt hàng của mặt hàng (theo tiêu đề rồi giá và theo giá sau đó tiêu đề) nếu chúng ta sử dụng quy tắc này
+Cách tiếp cận giao diện có thể so sánh?
+- Giả sử các đĩa DVD có quy tắc sắp xếp khác với các loại phương tiện khác, đó là theo tiêu đề, thì
+chiều dài giảm dần thì giá thành. Bạn sẽ sửa đổi mã của mình như thế nào để cho phép điều này?
+
+- Lớp Media triển khai giao diện Comparable
+- public int compareTo(Media o) {
+		// TODO Auto-generated method stub
+		if (this.title.compareTo(o.title) == 0) {
+			return Float.compare(this.cost, o.cost);
+		}
+		return this.title.compareTo(o.title);
+	}
+- Không thể có 2 quy tắc để sort 
+- Nếu DVD có quy tắc sắp xếp khác với các đối tượng khác. Thêm vào DVD như sau :
+ 	public int compareTo(Media o) {
+		if (o instanceof CD) {
+			CD cd = (CD) o;
+			if (this.getTitle().compareTo(cd.getTitle())== 0) {
+				if (this.length == cd.length) {
+					return Float.compare(this.getCost(), o.getCost());
+				}
+				return Integer.compare(this.length, cd.length);
+			}
+			return this.getTitle().compareTo(cd.getTitle());
+		}
+		return super.compareTo(o);
+	}

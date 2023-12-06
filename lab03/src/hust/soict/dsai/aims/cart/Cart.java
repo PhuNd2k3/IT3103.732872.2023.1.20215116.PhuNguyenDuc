@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims.cart;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import hust.soict.dsai.aims.media.Media;
 
@@ -35,25 +36,47 @@ public class Cart {
     }
 
     // Phu 20215116: search by id and by title method
-    public void searchById(int id) {
+    public Media searchById(int id) {
         for (Media media : itemsOrdered) {
             if (media.getId() == id) {
                 System.out.println("Nguyen Duc Phu 20215116: Media founded:");
                 System.out.println(media.toString());
-                return;
+                return media;
             }
         }
         System.out.println("Nguyen Duc Phu 20215116: No match found with id: " + id);
+        return null;
     }
 
-    public void searchByTitle(String title) {
+    public Media searchByTitle(String title) {
         for (Media media : itemsOrdered) {
             if (media.getTitle().equals(title)) {
                 System.out.println("Nguyen Duc Phu 20215116: Media founded:");
                 System.out.println(media.toString());
-                return;
+                return media;
             }
         }
         System.out.println("Nguyen Duc Phu 20215116: No match found with title: " + title);
+        return null;
+    }
+
+    public void printCart() {
+        for (Media media : itemsOrdered) {
+            System.out.println(media.toString());
+        }
+    }
+
+    public void sortByTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+        printCart();
+    }
+
+    public void sortByCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+        printCart();
+    }
+
+    public void removeAllMedia() {
+        itemsOrdered.clear();
     }
 }
