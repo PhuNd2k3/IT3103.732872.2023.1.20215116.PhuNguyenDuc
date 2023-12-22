@@ -1,9 +1,9 @@
-package hust.soict.dsai.aims.cart;
+package hust.soict.hedspi.aims.cart;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import hust.soict.dsai.aims.media.Media;
+import hust.soict.hedspi.aims.media.Media;
 
 public class Cart {
     private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
