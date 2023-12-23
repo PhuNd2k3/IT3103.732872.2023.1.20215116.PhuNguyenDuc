@@ -1,5 +1,7 @@
 package hust.soict.hedspi.aims.media;
+import javax.swing.JOptionPane;
 
+import hust.soict.hedspi.aims.exception.PlayerException;
 public class Track implements Playable {
     // Phu 20215116
     private String title;
@@ -18,12 +20,21 @@ public class Track implements Playable {
     public int getLength() {
         return length;
     }
-
-    @Override
-    public void play() {
-        System.out.println("Playing track: " + this.getTitle());
-        System.out.println("Track length: " + this.getLength());
-    }
+	public String getDetails() {
+		return String.format("Title: %s\nLength: %dm.\n", title, length).replaceAll(" null | 0 ", " Unknown ");
+	}
+	
+	@Override
+	public void play() throws PlayerException {
+		if (this.getLength() > 0) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Playing track: " + this.getTitle() + "\n");
+			sb.append("Track length: " + this.getLength() + "\n");
+			JOptionPane.showMessageDialog(null, sb.toString(), "Play track", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			throw new PlayerException("ERROR: Track length is non-positive!");
+		}
+	}
 
     @Override
     public boolean equals(Object o) {

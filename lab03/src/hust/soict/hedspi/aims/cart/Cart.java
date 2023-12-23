@@ -1,82 +1,97 @@
 package hust.soict.hedspi.aims.cart;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import hust.soict.hedspi.aims.media.Media;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class Cart {
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
 
-    // Phu 20215116: addMedia and removeMedia method
-    public void addMedia(Media media) {
-        if (itemsOrdered.contains(media)) {
-            System.out.println("Already has this media");
-        } else {
-            itemsOrdered.add(media);
-            System.out.println("Media added successfully");
-        }
-    }
+	public static final int MAX_NUMBERS_ORDERED = 20;
 
-    public void removeMedia(Media media) {
-        if (itemsOrdered.contains(media)) {
-            itemsOrdered.remove(media);
-            System.out.println("Media remove successfully");
-        } else
-            System.out.println("Media not found");
-    }
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
-    // Phu 20215116: get total cost method
-    public float totalCost() {
+	public void addMedia(Media media) {
+		
+		
+		itemsOrdered.add(media);
+	}
+
+	public void removeMedia(Media media) {
+		if (itemsOrdered.remove(media)) {
+			System.out.println("Removed " + media.toString() + " from cart.");
+		} else {
+			System.out.println("Couldn't find this item.");
+		}
+	}
+
+	public float totalCost() {
         float cost = 0;
-        for (Media media : itemsOrdered) {
-            cost += media.getCost();
+        try {
+            for (Media m : itemsOrdered) {
+                cost += m.getCost();
+            }
+        } catch (Exception e) {
+            System.err.println("Error calculating total cost: " + e.getMessage());
+            e.printStackTrace();
         }
         return cost;
     }
 
-    // Phu 20215116: search by id and by title method
-    public Media searchById(int id) {
-        for (Media media : itemsOrdered) {
-            if (media.getId() == id) {
-                System.out.println("Nguyen Duc Phu 20215116: Media founded:");
-                System.out.println(media.toString());
-                return media;
+	public void searchById(int id) {
+        System.out.println("Search results for ID: " + id);
+        try {
+            for (Media m : itemsOrdered) {
+                if (m.getId() == id) {
+                    System.out.println(m.toString());
+                    return;
+                }
             }
+        } catch (Exception e) {
+            System.err.println("Error searching by ID: " + e.getMessage());
+            e.printStackTrace();
         }
-        System.out.println("Nguyen Duc Phu 20215116: No match found with id: " + id);
+        System.out.println("No items found.");
+    }
+
+	public void searchByTitle(String title) {
+		boolean found = false;
+		System.out.println("Search results for keywords: " + title);
+		for (Media m : itemsOrdered) {
+			if (m.isMatch(title)) {
+				System.out.println(m.toString());
+				found = true;
+			}
+		}
+		if (!found)
+			System.out.println("No items found.");
+	}
+
+	public void sortByTitle() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+	}
+
+	public void sortByCost() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+	}
+
+	public Media fetchMedia(String title) {
+        try {
+            for (Media m : itemsOrdered) {
+                if (m.isMatch(title))
+                    return m;
+            }
+        } catch (Exception e) {
+            System.err.println("Error fetching media: " + e.getMessage());
+            e.printStackTrace();
+        }
         return null;
     }
+	public void placeOrder() {
+		itemsOrdered.clear();
+	}
 
-    public Media searchByTitle(String title) {
-        for (Media media : itemsOrdered) {
-            if (media.getTitle().equals(title)) {
-                System.out.println("Nguyen Duc Phu 20215116: Media founded:");
-                System.out.println(media.toString());
-                return media;
-            }
-        }
-        System.out.println("Nguyen Duc Phu 20215116: No match found with title: " + title);
-        return null;
-    }
-
-    public void printCart() {
-        for (Media media : itemsOrdered) {
-            System.out.println(media.toString());
-        }
-    }
-
-    public void sortByTitle() {
-        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
-        printCart();
-    }
-
-    public void sortByCost() {
-        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
-        printCart();
-    }
-
-    public void removeAllMedia() {
-        itemsOrdered.clear();
-    }
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
 }
