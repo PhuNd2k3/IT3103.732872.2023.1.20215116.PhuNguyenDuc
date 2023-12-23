@@ -1,21 +1,15 @@
 package hust.soict.hedspi.aims.screen;
 
-import javax.print.attribute.standard.Media;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import hust.soict.hedspi.aims.store.Store;
+import hust.soict.hedspi.aims.media.*;
 
 public class StoreScreen extends JFrame {
-
-	private Store store;
+	// Nguyen Duc Phu 20215116 GUI
+	private static Store store;
 	private JPanel center;
 
 	public StoreScreen(Store store) {
@@ -28,11 +22,12 @@ public class StoreScreen extends JFrame {
 		cp.add(createCenter(), BorderLayout.CENTER);
 
 		setVisible(true);
-		setTitle("Store");
+		setTitle("Phu's Store");
 		setBounds(100, 0, 1024, 768);
 	}
 
 	JPanel createNorth() {
+		// Nguyen Duc Phu NORTH component
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
 		north.add(createMenuBar());
@@ -41,6 +36,7 @@ public class StoreScreen extends JFrame {
 	}
 
 	JMenuBar createMenuBar() {
+		// PhuND 215116 MenuBar
 		JMenu menu = new JMenu("Options");
 
 		JMenu smUpdateStore = new JMenu("Update Store");
@@ -60,6 +56,7 @@ public class StoreScreen extends JFrame {
 	}
 
 	JPanel createHeader() {
+		// Phu create Header
 		JPanel header = new JPanel();
 		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
 
@@ -81,8 +78,9 @@ public class StoreScreen extends JFrame {
 	}
 
 	JPanel createCenter() {
+		// Phu 215116 create center
 		JPanel center = new JPanel();
-		center.setLayout(new GridLayout(0, 3, 2, 2));
+		center.setLayout(new GridLayout(3, 3, 2, 2));
 
 		ArrayList<Media> mediaInStore = store.getItemsInStore();
 		for (int i = 0; i < 9; i++) {
@@ -91,5 +89,19 @@ public class StoreScreen extends JFrame {
 		}
 
 		return center;
+	}
+
+	public static void main(String[] args) {
+		store = new Store();
+		store.addMedia(new Book("The flower", "Dan", 10.05f));
+		store.addMedia(new Book("Ping pong", "Taylor", 10.05f));
+		store.addMedia(new Book("Feet", "ZUng", 10.05f));
+		store.addMedia(new Book("Nonstop in the house", "Konichi", 10.05f));
+		store.addMedia(new Book("Doraemon", "Takahsi", 10.05f));
+		store.addMedia(new Book("Be the wife", "Hi", 10.05f));
+		store.addMedia(new CompactDisc("World", "BTS", 10f, 100, "Be fore", "YM"));
+		store.addMedia(new Book("Hot", "Top", 10.05f));
+		store.addMedia(new DigitalVideoDisc("Solo", "Jennie", 10f, 100, "SM"));
+		new StoreScreen(store);
 	}
 }

@@ -21,7 +21,7 @@ import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 
 public class MediaStore extends JPanel {
-
+	// Nguyen Duc Phu lab05 GUI MediaStore
 	private Media media;
 
 	public MediaStore(Media media) {
